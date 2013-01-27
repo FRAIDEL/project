@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Hotel.Models.Cliente>
+
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+
+@Html.Action("getDataCliente")
+<div id="load_details_cliente"></div>
+<table>
+    <tr>
+        <th>
+            Identificacion
+        </th>
+        <th>
+            Fecha ingreso
+        </th>
+        <th>
+            Fecha Egreso
+        </th>
+        <th>
+            Nombres
+        </th>
+        <th>
+            N_Lidad
+        </th>
+        <th>
+            Cedula
+        </th>
+        <th>
+            Lugar expedicion
+        </th>
+        <th>
+            Dir residencia
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Telefono fijo
+        </th>
+        <th>
+            Telefono celular
+        </th>
+        <th>
+            Profesion
+        </th>
+        <th>
+            Emp_donde labora
+        </th>
+        <th>
+            Procedencia
+        </th>
+        <th>
+            Destino final
+        </th>
+        <th>
+            Motivo del Viaje
+        </th>
+        <th>
+            Clase de vehiculo
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Placa
+        </th>
+        <th>
+            Color
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lugar_expedicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dir_residencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cuidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono_fijo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono_celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profesion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_donde_labora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Procedencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destino_final)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motivo_del_viaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clase_vehiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Hotel.Models.Acompaniantes>
+
+Acompañante(s)
+<table @*width="100px"*@>
+    <tr>
+        <td align="center">Identificacion</td>
+        <td align="center">Lugar de expedicion</td>
+        <td align="center">Nombres</td>
+        <td align="center">Apellidos</td>
+        <td align="center">Edad</td>
+    </tr>
+@foreach(var item in Model){
+    <tr  align="center">
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Identificacion)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Lugar_expedicion)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Edad)
+        </td>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Acompaniante", new { id = item.AcompanianteID },
+                new AjaxOptions
+                {
+                    LoadingElementId = "Uploading",
+                    UpdateTargetId = "list_Acompaniantes",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET"
+                })
+        </td>
+        <td>
+            @Ajax.ActionLink("Eliminar", "Delete", "Acompaniante", new { id = item.AcompanianteID },
+                new AjaxOptions {
+                    HttpMethod = "POST",
+                    LoadingElementId = "Uploading",
+                    UpdateTargetId = "list_Acompaniantes",
+                    InsertionMode = InsertionMode.Replace,
+                    Confirm = "Confirma que desea ELIMINAR este registro..?, si es asi, Click en Aceptar",
+                })
+        </td>
+    </tr>
+}    
+</table>
+@Ajax.ActionLink("Cancelar Reservacion", "Delete", "Cliente", new { id = ViewBag.id_cliente },
+        new AjaxOptions { 
+            HttpMethod = "POST",
+            LoadingElementId = "Uploading",
+            UpdateTargetId = "upload_cliente",
+            Confirm = "Confirma que desea Eliminar este Cliente y sus acompañantes..?, si es asi haga click en Aceptar/ok, de lo contrario en Cancelar",
+            //OnSuccess = "fdff" // aqui debo ocultar los froms y mostrar la ventana para crear reservas, Cliente y 
+            // Acompaniantes como al ionicio
+        })

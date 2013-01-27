@@ -1,0 +1,185 @@
+﻿<link href="@Url.Content("~/Content/MarckUp/StyleTable.css")" rel="Stylesheet" type="text/css" />
+
+<div class="entry-meta" aling="center">
+<span class="author vcard">
+    <a class="url fn n" href="#" title="" rel="author">
+@model IEnumerable<Hotel.Models.Reserva>
+
+@ViewBag.total
+@ViewBag.error
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<!-- <table style="height:20px;width:250px;overflow:scroll;"> -->
+<div class="content">
+<table cellspacing="0">
+<thead class="fixedHeader">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            fecha de creacion
+        </th>
+        <th>
+            ip de creacion
+        </th>
+        <th>
+            usuario creacion
+        </th>
+        <th>
+            fecha actualizacion
+        </th>
+        <th>
+            ip actualizacion
+        </th>
+        <th>
+            usuario actualizacion
+        </th>
+        <th>
+            Fecha Ingreso
+        </th>
+        <th>
+            Fecha Salida
+        </th>
+        <th>
+            Numero de Dias
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Total a Pagar
+        </th>
+        <th>
+            Abono
+        </th>
+        <th>
+            Restante
+        </th>        
+        <th>
+            fecha entrega
+        </th>
+        <th>
+            hora entrega
+        </th>
+        <th>
+            fecha devolucion
+        </th>
+        <th>
+            hora devolucion
+        </th>
+    </tr>
+</thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+        @Ajax.ActionLink( item.cliente.Nombres, "Details", "Cliente", new { id = item.ClienteID },
+            new AjaxOptions
+            {
+                LoadingElementId = "Uploading",
+                UpdateTargetId = "details_cliente",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+            }
+         )
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IP_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_ultima_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IP_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_dias)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_entrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora_entrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_devolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora_devolucion)
+        </td>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Reservacion", new { id = item.ReservaID },
+            new AjaxOptions
+            {
+                LoadingElementId = "Uploading",
+                UpdateTargetId = "load_Edit",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                //Url = Url.Action("Edit", "Reservacion", new { id = item.ReservaID }),
+            }
+         ) |
+            @Ajax.ActionLink("Cancelar Reserva", "Delete", "Reservacion", new { id = item.ReservaID },
+            new AjaxOptions
+            {
+                HttpMethod = "post",
+                Confirm = "Esta seguro(a) que desea ELIMINAR ESTA RESERVACION DE LA BASE DE DATOS..?",
+            })
+        </td>
+        <td>
+           @* @Ajax.ActionLink("Doc. Regiatro", "RegistroHuesped_PDF", "Create_PDF",
+                new AjaxOptions { 
+                    LoadingElementId = "Uploading", 
+                    UpdateTargetId = "",
+                }
+            )*@
+        </td>
+        <td>
+            @Html.ActionLink("Registro Obligatorio De Visitantes", "RegistroHuesped_PDF", new { id = item.ReservaID }, new { target = "_blank" })
+        </td>
+    </tr>
+}
+
+</table>
+    </a>
+</span>
+</div>
+<div id="load_Edit">
+    <!-- here load edit -->
+</div>
+</div>
+    <img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+<div id="UploadImg">
+    <!-- load here image ..! -->
+</div>
+
+<div id="details_cliente">
+    <!-- load details Cliente -->
+</div>

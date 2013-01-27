@@ -1,0 +1,68 @@
+﻿<div class="date_cliemte_registrado">
+@model Hotel.Models.Cliente
+           
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+
+<table>
+    <tr>
+        <td><b>cedula: </b>@Html.DisplayFor(model => model.Identificacion)</td>
+        <td><b>Nombres: </b>@Html.DisplayFor(model => model.Nombres)</td>
+    </tr>
+    <tr>
+        <td><b>NacionaLidad: </b>@Html.DisplayFor(model => model.Nacionalidad)</td>
+        <td><b>Lugar de expedicion : </b>@Html.DisplayFor(model => model.Lugar_expedicion)</td>
+    </tr>
+    <tr>
+        <td><b>Dir. residencia: </b>@Html.DisplayFor(model => model.Dir_residencia)</td>
+        <td><b>Cuidad: </b>@Html.DisplayFor(model => model.Cuidad)</td>
+    </tr>
+    <tr>
+        <td><b>Tel. fijo: </b>@Html.DisplayFor(model => model.Telefono_fijo)</td>
+        <td><b>Tel. celular: </b>@Html.DisplayFor(model => model.Telefono_celular)</td>
+    </tr>
+    <tr>
+        <td><b>Profesion: </b>@Html.DisplayFor(model => model.Profesion)</td>
+    </tr>
+    <tr>
+        <td><b>Emp. donde labora: </b>@Html.DisplayFor(model => model.Emp_donde_labora)</td>
+        <td><b>Procedencia: </b>@Html.DisplayFor(model => model.Procedencia)</td>
+    </tr>
+    <tr>
+        <td><b>Destino final: </b>@Html.DisplayFor(model => model.Destino_final)</td>
+        <td><b>Motivo del viaje: </b>@Html.DisplayFor(model => model.Motivo_del_viaje)</td>
+    </tr>
+    <tr>
+        <td><b>Clase de vahiculo : </b>@Html.DisplayFor(model => model.Clase_vehiculo)</td>
+        <td><b>Marca: </b>@Html.DisplayFor(model => model.Marca)</td>
+    </tr>
+    <tr>
+        <td><b>Placa: </b>@Html.DisplayFor(model => model.Placa)</td>
+        <td><b>Color: </b>@Html.DisplayFor(model => model.Color)</td>
+    </tr>
+    <tr>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Cliente", new { id = Model.ClienteID },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                LoadingElementId = "Uploading",
+                UpdateTargetId = "upload_cliente",
+                InsertionMode = InsertionMode.Replace,
+            })   | 
+            @*@Ajax.ActionLink("Eliminar Cliente", "Delete", "Cliente", new { id = Model.ClienteID },
+            new AjaxOptions { 
+                HttpMethod = "POST",
+                LoadingElementId = "Uploading",
+                UpdateTargetId = "upload_cliente",
+                Confirm = "Confirma que desea Eliminar este Cliente y sus acompañantes..?, si es asi haga click en Aceptar/ok, de lo contrario en Cancelar",
+                //OnSuccess = "fdff" // aqui debo ocultar los froms y mostrar la ventana para crear reservas, Cliente y 
+                // Acompaniantes como al inicio
+            })*@
+        </td>
+    </tr>
+</table>
+<div id="Updated_cliente"></div>
+<img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" alt="" />
+        
+</div>

@@ -1,0 +1,122 @@
+﻿<div class="Details_cliente">
+@model Hotel.Models.Cliente
+
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+
+<fieldset>
+    <legend>Cliente</legend>
+    <div id="upload_cliente">
+    <table>
+    <tr>
+        <th><div class="display-label"><b>Identificacion</b></div></th>
+        <th><div class="display-label"><b>Nombres</b></div></th>
+        <th><div class="display-label"><b>NacionaLidad</b></div></th>
+        <th><div class="display-label"><b>Lugar Expedicion</b></div></th>
+        <th><div class="display-label"><b>Dir. residencia</b></div></th>
+        <th><div class="display-label"><b>Ciudad</b></div></th>
+        <th><div class="display-label"><b>Telefono fijo</b></div></th>
+        <th><div class="display-label"><b>Telefono celular</b></div></th>
+        <th><div class="display-label"><b>Profesion</b></div></th>
+        <th><div class="display-label"><b>Emp. donde labora</b></div></th>
+        <th><div class="display-label"><b>Procedencia</b></div></th>
+        <th><div class="display-label"><b>Destino_final</b></div></th>
+        <th><div class="display-label"><b>Motivo del Viaje</b></div></th>
+        <th><div class="display-label"><b>Clase de vehiculo</b></div></th>
+        <th><div class="display-label"><b>Marca</b></div></th>
+        <th><div class="display-label"><b>Placa</b></div></th>
+        <th><div class="display-label"><b>Color</b></div></th>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Identificacion)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Nombres)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Nacionalidad)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Lugar_expedicion)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Dir_residencia)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Cuidad)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Telefono_fijo)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Telefono_celular)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Profesion)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Emp_donde_labora)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Procedencia)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Destino_final)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Motivo_del_viaje)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Clase_vehiculo)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Marca)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Placa)</div>
+        </td>
+        <td>
+            <div class="display-field">@Html.DisplayFor(model => model.Color)</div>
+        </td>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Cliente", new { id = Model.ClienteID },
+                new AjaxOptions {
+                    LoadingElementId = "Uploading",
+                    UpdateTargetId = "form_edit_cliente",
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    OnBegin = "hide_Details_Cliente()",
+                    //OnSuccess = "hide_view_EditCliente()",
+                })
+        </td>
+    </tr>
+</table>
+</div>
+<p>ACOMPA&Ntilde;IANTES</p>
+@Ajax.ActionLink("Agregar Acompañantes", "Create", "Acompaniante",
+        new AjaxOptions
+        {
+            LoadingElementId = "Uploading",
+            UpdateTargetId = "new_Acompaniantes",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET"
+        }
+    )
+
+<div id="new_Acompaniantes">
+<!-- here upload for new Acompaniantes -->
+</div>
+<div id="list_Acompaniantes">
+@Html.Action("Index", "Acompaniante")
+</div>
+</fieldset>
+<img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+<div id="form_edit_cliente">
+<!-- edit cliente here -->
+</div>
+<br />
+<b id="hide_Details">Ocultar</b>
+</div>

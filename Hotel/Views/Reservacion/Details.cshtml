@@ -1,0 +1,40 @@
+﻿@model Hotel.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Reserva</legend>
+
+    <div class="display-label">cliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.Telefono_Personal)
+    </div>
+
+    <div class="display-label">detalles_reservacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.detalles_reservacion.IP_creacion)
+    </div>
+
+    <div class="display-label">Fecha_ingreso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha_ingreso)
+    </div>
+
+    <div class="display-label">Fecha_salida</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha_salida)
+    </div>
+
+    <div class="display-label">Cantidad_dias</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cantidad_dias)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ReservaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

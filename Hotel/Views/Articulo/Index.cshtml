@@ -1,0 +1,76 @@
+﻿<div id="all_articulos">
+@model IEnumerable<Hotel.Models.Articulo>
+
+<p>
+    @*@Html.ActionLink("Nuevo artculo", "Create")*@
+    @Ajax.ActionLink("Nuevo articulo", "Create", "Articulo",
+        new AjaxOptions
+        {
+            LoadingElementId = "Uploading171",
+            UpdateTargetId = "load_create",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+        }
+    )
+</p>
+<table>
+    <tr>
+        <th>
+            habitacion
+        </th>
+        <th>
+            Nombre articulo
+        </th>
+        <th>
+            Cantidad articulos
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.habitacion.Num_habitacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_articulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_articulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Articulo", new { id = item.ArticuloID },
+                new AjaxOptions {
+                    LoadingElementId = "Uploading171",
+                    UpdateTargetId = "load_edit",
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    
+                }
+            )
+            |
+            @Ajax.ActionLink("Eliminar", "Delete", "Articulo", new { id = item.ArticuloID },
+                new AjaxOptions{
+                    UpdateTargetId = "all_articulos",
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,   
+                    Confirm = "Este seguro q desea Eliminar este Articulo de la Base de datos..?",
+                }
+            )
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ArticuloID })*@ 
+           @* @Html.ActionLink("Details", "Details", new { id=item.ArticuloID }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.ArticuloID })*@
+        </td>
+    </tr>
+}
+
+</table>
+<img id="Uploading171" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+<div id="load_create"></div>
+<div id="load_edit"></div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model Hotel.Models.Habitacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Habitacion</legend>
+
+    <div class="display-label">Nombre_habitacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre_habitacion)
+    </div>
+
+    <div class="display-label">Num_habitacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Num_habitacion)
+    </div>
+
+    <div class="display-label">Num_piso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Num_piso)
+    </div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.HabitacionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,97 @@
+﻿<div id="index_habitacion">
+<div class="insite_index">
+@model IEnumerable<Hotel.Models.Habitacion>
+
+@*<link href="@Url.Content("~/Content/datePicker/datePicker.css")" rel="Stylesheet" type="text/css" />*@
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Content/datePicker/date.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Content/datePicker/firebug.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.datePicker.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Content/datePicker/metod_date_Picker.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+
+@Ajax.ActionLink("Verificar disponibilidad", "show_hab_disponibles", "Habitacion", 
+    new AjaxOptions {
+        LoadingElementId = "Uploading_2",
+        UpdateTargetId = "query_disponibilidad",
+        HttpMethod = "get",
+        InsertionMode = InsertionMode.Replace,
+    })
+<div id="query_disponibilidad">
+    <!-- here load disponibilidad -->
+</div>
+<img id="Uploading_2" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+
+<span id="ListHabitacines">
+<h2>Lista de Habitaciones</h2>
+@ViewBag.b
+@ViewBag.error
+<p>
+    @Ajax.ActionLink("Nueva Habitacion", "Create", "Habitacion", new AjaxOptions {
+        LoadingElementId = "Uploading_3",
+        UpdateTargetId = "load_create_habitacion",
+        HttpMethod = "GET", 
+        InsertionMode = InsertionMode.Replace,
+    })
+</p>
+<div id="load_create_habitacion"></div>
+<img id="Uploading_3" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+    <ul id="album-list">
+@foreach (var item in Model) {
+    
+        <li><a><img src="@Url.Content("~/Content/images/puerta.jpg")" width="160px" height="190px" alt="@item.Num_habitacion" title="@item.Num_habitacion" />
+        <p align="left" class="letter">
+            @*HABITACION
+            <br />
+            @Html.DisplayFor(modelItem => item.Nombre_habitacion)<br />*@
+            NUMERO<br />
+            @Html.DisplayFor(modelItem => item.Num_habitacion)<br />
+            PISO<br /> 
+            @Html.DisplayFor(modelItem => item.Num_piso)<br />
+            OBSERVACION<br />
+            @Html.DisplayFor(modelItem => item.Descripcion)<br />
+            ESTADO<br />
+            @Html.DisplayFor(modelItem => item.Estado)<br />
+        </p>
+        </a>
+        <img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+        <p>
+            @Ajax.ActionLink("Reservar", "Create", "Reservacion", new { id = item.HabitacionID },
+                new AjaxOptions { 
+                    InsertionMode=InsertionMode.Replace,
+                    HttpMethod="GET",
+                    LoadingElementId = "Uploading",
+                    UpdateTargetId = "ListHabitacines",
+                })
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.HabitacionID })
+            @Html.ActionLink("Details", "Details", new { id = item.HabitacionID })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.HabitacionID })*@
+            @Ajax.ActionLink("Borrar", "Delete", "Habitacion", new { id = item.HabitacionID},
+            new AjaxOptions {
+                UpdateTargetId = "index_habitacion",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                Confirm = "Esta SEGURO(A) que desea ELIMIMAR esta HABITACION ..?",
+            })
+        </p>
+        </li>
+    @Ajax.ActionLink("Inventario", "showMyArticulos", "Articulo", new { id = item.HabitacionID },
+        new AjaxOptions
+        {
+            LoadingElementId = "Uploading17",
+            UpdateTargetId = "ListHabitacines",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+        }
+    )
+    <img id="Uploading17" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+}, 
+</ul>
+</span>
+</div>
+</div>

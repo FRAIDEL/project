@@ -1,0 +1,48 @@
+﻿@model Hotel.Models.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">Direccion_Residencia</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono_Personal)
+    </div>
+
+    <div class="display-label">Cedula</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Identificacion)
+    </div>
+
+    <div class="display-label">Departamento_Origen</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departamento_Origen)
+    </div>
+
+    <div class="display-label">Ciudad_origen</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ciudad_origen)
+    </div>
+
+    <div class="display-label">Nombres</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombres)
+    </div>
+
+    <div class="display-label">Apellidos</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

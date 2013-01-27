@@ -1,0 +1,78 @@
+﻿@model Hotel.Models.Gasto
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link type="text/css" href="@Url.Content("~/Content/datePicker/jquery.ui.all.css")" rel="Stylesheet" />
+<link type="text/css" href="@Url.Content("~/Content/datePicker/demos.css")" rel="Stylesheet" />
+@*<script src="@Url.Content("~/Content/datePicker/jquery-1.4.4.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#Fecha").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+        @Html.HiddenFor(model => model.GastoID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha)
+            @Html.ValidationMessageFor(model => model.Fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.items)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.items)
+            @Html.ValidationMessageFor(model => model.items)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cantidad_items)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cantidad_items)
+            @Html.ValidationMessageFor(model => model.Cantidad_items)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Precio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Precio)
+            @Html.ValidationMessageFor(model => model.Precio)
+        </div>
+
+        <p>
+            <input type="submit" value="Actualizar" />
+        </p>
+    </fieldset>
+}

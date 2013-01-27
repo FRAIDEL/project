@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hotelModel.Store" Alias="Self" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="hotelModelStoreContainer">
+          <EntitySet Name="acompaniantes" EntityType="hotelModel.Store.acompaniantes" store:Type="Tables" Schema="hotel" />
+          <EntitySet Name="articulo" EntityType="hotelModel.Store.articulo" store:Type="Tables" Schema="hotel" />
+          <EntitySet Name="cliente" EntityType="hotelModel.Store.cliente" store:Type="Tables" Schema="hotel" />
+          <EntitySet Name="gastos" EntityType="hotelModel.Store.gastos" store:Type="Tables" Schema="hotel" />
+          <EntitySet Name="habitacion" EntityType="hotelModel.Store.habitacion" store:Type="Tables" Schema="hotel" />
+          <EntitySet Name="reserva" EntityType="hotelModel.Store.reserva" store:Type="Tables" Schema="hotel" />
+          <AssociationSet Name="ClienteID" Association="hotelModel.Store.ClienteID">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="acompaniantes" EntitySet="acompaniantes" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteID_" Association="hotelModel.Store.ClienteID_">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="HabitacionID" Association="hotelModel.Store.HabitacionID">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="HabitacionID_" Association="hotelModel.Store.HabitacionID_">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="acompaniantes">
+          <Key>
+            <PropertyRef Name="AcompanianteID" />
+          </Key>
+          <Property Name="AcompanianteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="int" Nullable="false" />
+          <Property Name="Edad" Type="varchar" MaxLength="10" />
+          <Property Name="Nombres" Type="varchar" MaxLength="90" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="90" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="20" />
+          <Property Name="Lugar_expedicion" Type="varchar" MaxLength="90" />
+          <Property Name="Fecha_actual" Type="date" />
+        </EntityType>
+        <EntityType Name="articulo">
+          <Key>
+            <PropertyRef Name="ArticuloID" />
+          </Key>
+          <Property Name="ArticuloID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HabitacionID" Type="int" Nullable="false" />
+          <Property Name="Nombre_articulo" Type="varchar" MaxLength="70" />
+          <Property Name="Cantidad_articulo" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Nombres" Type="varchar" MaxLength="120" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="100" />
+          <Property Name="Lugar_expedicion" Type="varchar" MaxLength="100" />
+          <Property Name="Dir_residencia" Type="varchar" MaxLength="100" />
+          <Property Name="Cuidad" Type="varchar" MaxLength="100" />
+          <Property Name="Telefono_fijo" Type="varchar" MaxLength="25" />
+          <Property Name="Telefono_celular" Type="varchar" MaxLength="25" />
+          <Property Name="Profesion" Type="varchar" MaxLength="70" />
+          <Property Name="Emp_donde_labora" Type="varchar" MaxLength="70" />
+          <Property Name="Procedencia" Type="varchar" MaxLength="70" />
+          <Property Name="Destino_final" Type="varchar" MaxLength="70" />
+          <Property Name="Motivo_del_viaje" Type="varchar" MaxLength="100" />
+          <Property Name="Clase_vehiculo" Type="varchar" MaxLength="70" />
+          <Property Name="Marca" Type="varchar" MaxLength="70" />
+          <Property Name="Placa" Type="varchar" MaxLength="70" />
+          <Property Name="Color" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="gastos">
+          <Key>
+            <PropertyRef Name="GastosID" />
+          </Key>
+          <Property Name="GastosID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Items" Type="varchar" MaxLength="70" />
+          <Property Name="Cantidad_items" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="120" />
+          <Property Name="Precio" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="habitacion">
+          <Key>
+            <PropertyRef Name="HabitacionID" />
+          </Key>
+          <Property Name="HabitacionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Precio_habitacion" Type="int" Nullable="false" />
+          <Property Name="Num_habitacion" Type="varchar" MaxLength="10" />
+          <Property Name="Num_piso" Type="varchar" MaxLength="10" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="140" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="ReservacionID" />
+          </Key>
+          <Property Name="ReservacionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID_" Type="int" Nullable="false" />
+          <Property Name="HabitacionID_" Type="int" />
+          <Property Name="Fecha_ingreso" Type="date" />
+          <Property Name="Hora_ingreso" Type="time" />
+          <Property Name="Fecha_egreso" Type="date" />
+          <Property Name="Hora_egreso" Type="time" />
+          <Property Name="Cantidad_dias" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="Abono" Type="int" />
+          <Property Name="Restante" Type="int" />
+          <Property Name="Fecha_creacion" Type="date" />
+          <Property Name="IP_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="User_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_ultima_modificacion" Type="date" />
+          <Property Name="IP_modificacion" Type="varchar" MaxLength="50" />
+          <Property Name="User_modificacion" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="17" />
+          <Property Name="Fecha_entrega" Type="date" />
+          <Property Name="Hora_entrega" Type="time" />
+          <Property Name="Fecha_devolucion" Type="date" />
+          <Property Name="Hora_devolucion" Type="time" />
+          <Property Name="Observacion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="ClienteID">
+          <End Role="cliente" Type="hotelModel.Store.cliente" Multiplicity="1" />
+          <End Role="acompaniantes" Type="hotelModel.Store.acompaniantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="acompaniantes">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteID_">
+          <End Role="cliente" Type="hotelModel.Store.cliente" Multiplicity="1" />
+          <End Role="reserva" Type="hotelModel.Store.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="ClienteID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HabitacionID">
+          <End Role="habitacion" Type="hotelModel.Store.habitacion" Multiplicity="1" />
+          <End Role="articulo" Type="hotelModel.Store.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="HabitacionID" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="HabitacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HabitacionID_">
+          <End Role="habitacion" Type="hotelModel.Store.habitacion" Multiplicity="0..1" />
+          <End Role="reserva" Type="hotelModel.Store.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="HabitacionID" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="HabitacionID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hotelModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="hotelEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Acompaniantes" EntityType="hotelModel.Acompaniantes" />
+          <EntitySet Name="Articulo" EntityType="hotelModel.Articulo" />
+          <EntitySet Name="Cliente" EntityType="hotelModel.Cliente" />
+          <EntitySet Name="Gastos" EntityType="hotelModel.Gastos" />
+          <EntitySet Name="Habitacion" EntityType="hotelModel.Habitacion" />
+          <EntitySet Name="Reserva" EntityType="hotelModel.Reserva" />
+          <AssociationSet Name="ClienteID" Association="hotelModel.ClienteID">
+            <End Role="cliente" EntitySet="Cliente" />
+            <End Role="acompaniantes" EntitySet="Acompaniantes" />
+          </AssociationSet>
+          <AssociationSet Name="HabitacionID" Association="hotelModel.HabitacionID">
+            <End Role="habitacion" EntitySet="Habitacion" />
+            <End Role="articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteID_" Association="hotelModel.ClienteID_">
+            <End Role="cliente" EntitySet="Cliente" />
+            <End Role="reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="HabitacionID_" Association="hotelModel.HabitacionID_">
+            <End Role="habitacion" EntitySet="Habitacion" />
+            <End Role="reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Acompaniantes">
+          <Key>
+            <PropertyRef Name="AcompanianteID" />
+          </Key>
+          <Property Name="AcompanianteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="Int32" Nullable="false" />
+          <Property Name="Edad" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Nombres" Type="String" MaxLength="90" Unicode="true" FixedLength="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="90" Unicode="true" FixedLength="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Lugar_expedicion" Type="String" MaxLength="90" Unicode="true" FixedLength="false" />
+          <Property Name="Fecha_actual" Type="DateTime" />
+          <NavigationProperty Name="cliente" Relationship="hotelModel.ClienteID" FromRole="acompaniantes" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="ArticuloID" />
+          </Key>
+          <Property Name="ArticuloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HabitacionID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_articulo" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Cantidad_articulo" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="habitacion" Relationship="hotelModel.HabitacionID" FromRole="articulo" ToRole="habitacion" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClienteID" />
+          </Key>
+          <Property Name="ClienteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nombres" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Lugar_expedicion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Dir_residencia" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Cuidad" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono_fijo" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono_celular" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Profesion" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Emp_donde_labora" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Procedencia" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Destino_final" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Motivo_del_viaje" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Clase_vehiculo" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Marca" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Placa" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Color" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="acompaniantes" Relationship="hotelModel.ClienteID" FromRole="cliente" ToRole="acompaniantes" />
+          <NavigationProperty Name="reserva" Relationship="hotelModel.ClienteID_" FromRole="cliente" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="Gastos">
+          <Key>
+            <PropertyRef Name="GastosID" />
+          </Key>
+          <Property Name="GastosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Items" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Cantidad_items" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="Precio" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Habitacion">
+          <Key>
+            <PropertyRef Name="HabitacionID" />
+          </Key>
+          <Property Name="HabitacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Precio_habitacion" Type="Int32" Nullable="false" />
+          <Property Name="Num_habitacion" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Num_piso" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="articulo" Relationship="hotelModel.HabitacionID" FromRole="habitacion" ToRole="articulo" />
+          <NavigationProperty Name="reserva" Relationship="hotelModel.HabitacionID_" FromRole="habitacion" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="ReservacionID" />
+          </Key>
+          <Property Name="ReservacionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID_" Type="Int32" Nullable="false" />
+          <Property Name="HabitacionID_" Type="Int32" />
+          <Property Name="Fecha_ingreso" Type="DateTime" />
+          <Property Name="Hora_ingreso" Type="Time" />
+          <Property Name="Fecha_egreso" Type="DateTime" />
+          <Property Name="Hora_egreso" Type="Time" />
+          <Property Name="Cantidad_dias" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="Abono" Type="Int32" />
+          <Property Name="Restante" Type="Int32" />
+          <Property Name="Fecha_creacion" Type="DateTime" />
+          <Property Name="IP_creacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="User_creacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fecha_ultima_modificacion" Type="DateTime" />
+          <Property Name="IP_modificacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="User_modificacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Estado" Type="String" MaxLength="17" Unicode="true" FixedLength="false" />
+          <Property Name="Fecha_entrega" Type="DateTime" />
+          <Property Name="Hora_entrega" Type="Time" />
+          <Property Name="Fecha_devolucion" Type="DateTime" />
+          <Property Name="Hora_devolucion" Type="Time" />
+          <Property Name="Observacion" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="cliente" Relationship="hotelModel.ClienteID_" FromRole="reserva" ToRole="cliente" />
+          <NavigationProperty Name="habitacion" Relationship="hotelModel.HabitacionID_" FromRole="reserva" ToRole="habitacion" />
+        </EntityType>
+        <Association Name="ClienteID">
+          <End Role="cliente" Type="hotelModel.Cliente" Multiplicity="1" />
+          <End Role="acompaniantes" Type="hotelModel.Acompaniantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="acompaniantes">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HabitacionID">
+          <End Role="habitacion" Type="hotelModel.Habitacion" Multiplicity="1" />
+          <End Role="articulo" Type="hotelModel.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="HabitacionID" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="HabitacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteID_">
+          <End Role="cliente" Type="hotelModel.Cliente" Multiplicity="1" />
+          <End Role="reserva" Type="hotelModel.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ClienteID" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="ClienteID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HabitacionID_">
+          <End Role="habitacion" Type="hotelModel.Habitacion" Multiplicity="0..1" />
+          <End Role="reserva" Type="hotelModel.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="HabitacionID" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="HabitacionID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="hotelEntities5">
+          <EntitySetMapping Name="Acompaniantes"><EntityTypeMapping TypeName="hotelModel.Acompaniantes"><MappingFragment StoreEntitySet="acompaniantes">
+            <ScalarProperty Name="AcompanianteID" ColumnName="AcompanianteID" />
+            <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+            <ScalarProperty Name="Edad" ColumnName="Edad" />
+            <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+            <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+            <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+            <ScalarProperty Name="Lugar_expedicion" ColumnName="Lugar_expedicion" />
+            <ScalarProperty Name="Fecha_actual" ColumnName="Fecha_actual" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Articulo"><EntityTypeMapping TypeName="hotelModel.Articulo"><MappingFragment StoreEntitySet="articulo">
+            <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
+            <ScalarProperty Name="HabitacionID" ColumnName="HabitacionID" />
+            <ScalarProperty Name="Nombre_articulo" ColumnName="Nombre_articulo" />
+            <ScalarProperty Name="Cantidad_articulo" ColumnName="Cantidad_articulo" />
+            <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Cliente"><EntityTypeMapping TypeName="hotelModel.Cliente"><MappingFragment StoreEntitySet="cliente">
+            <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+            <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+            <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+            <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+            <ScalarProperty Name="Lugar_expedicion" ColumnName="Lugar_expedicion" />
+            <ScalarProperty Name="Dir_residencia" ColumnName="Dir_residencia" />
+            <ScalarProperty Name="Cuidad" ColumnName="Cuidad" />
+            <ScalarProperty Name="Telefono_fijo" ColumnName="Telefono_fijo" />
+            <ScalarProperty Name="Telefono_celular" ColumnName="Telefono_celular" />
+            <ScalarProperty Name="Profesion" ColumnName="Profesion" />
+            <ScalarProperty Name="Emp_donde_labora" ColumnName="Emp_donde_labora" />
+            <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+            <ScalarProperty Name="Destino_final" ColumnName="Destino_final" />
+            <ScalarProperty Name="Motivo_del_viaje" ColumnName="Motivo_del_viaje" />
+            <ScalarProperty Name="Clase_vehiculo" ColumnName="Clase_vehiculo" />
+            <ScalarProperty Name="Marca" ColumnName="Marca" />
+            <ScalarProperty Name="Placa" ColumnName="Placa" />
+            <ScalarProperty Name="Color" ColumnName="Color" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Gastos"><EntityTypeMapping TypeName="hotelModel.Gastos"><MappingFragment StoreEntitySet="gastos">
+            <ScalarProperty Name="GastosID" ColumnName="GastosID" />
+            <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+            <ScalarProperty Name="Items" ColumnName="Items" />
+            <ScalarProperty Name="Cantidad_items" ColumnName="Cantidad_items" />
+            <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+            <ScalarProperty Name="Precio" ColumnName="Precio" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Habitacion"><EntityTypeMapping TypeName="hotelModel.Habitacion"><MappingFragment StoreEntitySet="habitacion">
+            <ScalarProperty Name="HabitacionID" ColumnName="HabitacionID" />
+            <ScalarProperty Name="Precio_habitacion" ColumnName="Precio_habitacion" />
+            <ScalarProperty Name="Num_habitacion" ColumnName="Num_habitacion" />
+            <ScalarProperty Name="Num_piso" ColumnName="Num_piso" />
+            <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+            <ScalarProperty Name="Estado" ColumnName="Estado" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Reserva"><EntityTypeMapping TypeName="hotelModel.Reserva"><MappingFragment StoreEntitySet="reserva">
+            <ScalarProperty Name="ReservacionID" ColumnName="ReservacionID" />
+            <ScalarProperty Name="ClienteID_" ColumnName="ClienteID_" />
+            <ScalarProperty Name="HabitacionID_" ColumnName="HabitacionID_" />
+            <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
+            <ScalarProperty Name="Hora_ingreso" ColumnName="Hora_ingreso" />
+            <ScalarProperty Name="Fecha_egreso" ColumnName="Fecha_egreso" />
+            <ScalarProperty Name="Hora_egreso" ColumnName="Hora_egreso" />
+            <ScalarProperty Name="Cantidad_dias" ColumnName="Cantidad_dias" />
+            <ScalarProperty Name="Total" ColumnName="Total" />
+            <ScalarProperty Name="Abono" ColumnName="Abono" />
+            <ScalarProperty Name="Restante" ColumnName="Restante" />
+            <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
+            <ScalarProperty Name="IP_creacion" ColumnName="IP_creacion" />
+            <ScalarProperty Name="User_creacion" ColumnName="User_creacion" />
+            <ScalarProperty Name="Fecha_ultima_modificacion" ColumnName="Fecha_ultima_modificacion" />
+            <ScalarProperty Name="IP_modificacion" ColumnName="IP_modificacion" />
+            <ScalarProperty Name="User_modificacion" ColumnName="User_modificacion" />
+            <ScalarProperty Name="Estado" ColumnName="Estado" />
+            <ScalarProperty Name="Fecha_entrega" ColumnName="Fecha_entrega" />
+            <ScalarProperty Name="Hora_entrega" ColumnName="Hora_entrega" />
+            <ScalarProperty Name="Fecha_devolucion" ColumnName="Fecha_devolucion" />
+            <ScalarProperty Name="Hora_devolucion" ColumnName="Hora_devolucion" />
+            <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ConnectMySQL">
+        <EntityTypeShape EntityType="hotelModel.Acompaniantes" Width="1.5" PointX="3" PointY="4.875" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Articulo" Width="1.5" PointX="6" PointY="0.75" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Cliente" Width="1.5" PointX="0.75" PointY="4" Height="4.2218636067708344" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Gastos" Width="1.5" PointX="2.75" PointY="8.5" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Habitacion" Width="1.5" PointX="3.75" PointY="1" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Reserva" Width="1.5" PointX="6" PointY="3.5" Height="5.0436002604166674" IsExpanded="true" />
+        <AssociationConnector Association="hotelModel.ClienteID" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.082021484375" />
+          <ConnectorPoint PointX="3" PointY="6.082021484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="hotelModel.HabitacionID" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="1.8355004882812498" />
+          <ConnectorPoint PointX="6" PointY="1.8355004882812498" />
+        </AssociationConnector>
+        <AssociationConnector Association="hotelModel.ClienteID_" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.7867032877604174" />
+          <ConnectorPoint PointX="6" PointY="7.7867032877604174" />
+        </AssociationConnector>
+        <AssociationConnector Association="hotelModel.HabitacionID_" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="3.2496956380208335" />
+          <ConnectorPoint PointX="4.90625" PointY="4.15625" />
+          <ConnectorPoint PointX="6" PointY="4.15625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

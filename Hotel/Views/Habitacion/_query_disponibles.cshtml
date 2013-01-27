@@ -1,0 +1,47 @@
+﻿<div class="form_dsponible">
+@model Hotel.Models.query_hab_disponibles
+
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/date.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/firebug.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.datePicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/metod_date_Picker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+
+
+@using (Html.BeginForm("show_hab_disponibles", "Habitacion", FormMethod.Post, new { @class = "hab_disponibles" }))
+{ 
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td align="center">
+                @*<a href="Create.cshtml">Create.cshtml</a>*@
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.date_init)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.date_init)
+                    @Html.ValidationMessageFor(model => model.date_init)
+                </div>
+            </td>
+            <td align="center">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.date_end)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.date_end)
+                    @Html.ValidationMessageFor(model => model.date_end)
+                </div>
+            </td>
+        @*</tr>
+        <tr>*@
+            <td align="center">
+                <input type="submit" id="show_disponibles" value="Listar" />
+            </td>
+        </tr>
+    </table>
+} 
+</div>

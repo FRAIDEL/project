@@ -1,0 +1,82 @@
+﻿<div id="index_gastos">
+
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+@model IEnumerable<Hotel.Models.Gasto>
+<h3>
+<p>
+    @Ajax.ActionLink("Crear Gastos", "Create", "Gastos",
+        new AjaxOptions {
+            LoadingElementId = "Uploading2",
+            UpdateTargetId = "load_create",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            //OnSuccess = "hide_gastos_index()",
+        }
+    )
+    <img id="Uploading2" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+</p>
+<div id="load_create"></div>
+<table>
+    <tr>
+        <th>
+            Fecha Actual
+        </th>
+        <th>
+            Articulo y/o servicio
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Precio
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.items)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_items)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Ajax.ActionLink("Editar", "Edit", "Gastos", new { id = item.GastoID },
+                new AjaxOptions {
+                    LoadingElementId = "Uploading",
+                    UpdateTargetId = "load_edit",
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                }
+            ) |
+            @Ajax.ActionLink("Eliminar", "Delete", "Gastos", new { id = item.GastoID },
+                new AjaxOptions {
+                    LoadingElementId = "Uploading",
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    Confirm = "Esta seguro(a) que desea Eliminar este registro de la Base de datos..?",
+                }
+            )
+        </td>
+    </tr>
+}
+</table>
+<img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+<div id="load_edit"></div>
+</h3>
+</div>

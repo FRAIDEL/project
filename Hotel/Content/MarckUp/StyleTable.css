@@ -1,0 +1,50 @@
+﻿.negro
+{
+    font-family: fantasy;
+}
+.letter
+{
+    font-family: cursive;     
+}
+div.content
+        {
+            border: #000000 0px solid;
+            /*height: 400px;*/
+            height: auto;
+            overflow-y: auto;
+            /*width: 800px;*/
+            width: 800px;
+        }
+
+        .fixedHeader 
+        {
+            white-space: nowrap;
+        }
+
+        .fixedHeader tr 
+        {
+            height: auto;
+            position: relative;
+        }
+
+        .fixedHeader tr td 
+        {
+            background-color: #778899;
+            border: #000000 1px solid;
+            text-align: center;
+        }
+
+        tbody.scrollContent 
+        {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 370px;
+        }
+
+        .scrollContent tr td 
+        {
+            background-color: #C0C0C0;
+            border: #000000 1px solid;
+            /*padding-right: 22px;*/
+            vertical-align: top;
+        }

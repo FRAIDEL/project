@@ -1,0 +1,50 @@
+.loguin
+{
+ height: 50px;
+ width: 100%;
+ background-color:Aqua;    
+}
+ul
+{
+	list-style-type: square;
+	margin-left: 25px;
+	font-size: 14px;
+}
+
+ul#album-list
+{
+	list-style: none;
+	margin-left: 10px;
+}
+
+ul#album-list li
+{
+	/*height: 130px;*/
+	/*width: 100px;*/
+	float: left;
+	margin: 10px;
+	text-align: center;
+}
+
+ul#album-list li a, ul#album-list li .button
+{
+	font-size: 13px;
+	float: left;
+}
+
+ul#album-list li a span
+{
+	/*color: #9b9993;*/
+	/*text-decoration:none;*/
+}
+
+li
+{
+    font-style:oblique;
+    font-family:Arial, Blackadder ITC, Arial Black;
+    color:Black;
+}
+li p
+{
+    width:90px;
+}

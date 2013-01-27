@@ -1,0 +1,9 @@
+1) si se ingreso el Total y el Abono en sistema muestre la canti restante
+2) pendientes los user de creacion y modificacion de reservas
+3) Add acompañantes y Editarlos
+4) Ocultar crear acomplantes hasta q se verifique el cliente
+5) Validar distintos mail`s
+6) Hacer un blogs
+7) reflejos y sombras 3d photosop
+
+23) Montar imagen en lugar de el texto estela del mar, en cada submit

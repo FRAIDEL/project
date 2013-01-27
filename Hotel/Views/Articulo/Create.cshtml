@@ -1,0 +1,48 @@
+﻿<div id="all_create_art">
+@model Hotel.Models.Articulo
+
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("Create", "Articulo", FormMethod.Post, new { @class = "class_create_articulo" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Articulos</legend>
+        <div id="load_articulos"></div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nombre_articulo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Nombre_articulo)
+                @Html.ValidationMessageFor(model => model.Nombre_articulo)
+            </div>
+
+            <div class="editor-label">
+                Cantidad de articlulo(s)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Cantidad_articulo)
+                @Html.ValidationMessageFor(model => model.Cantidad_articulo)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Descripcion)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Descripcion)
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
+        @*</div>*@
+
+        <p>
+            <input type="submit" value="Create" id="create_articulo" />
+        </p>
+    </fieldset>
+}
+<div id="hide_all_create_art">Ocultar</div>
+</div>

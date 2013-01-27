@@ -1,0 +1,40 @@
+﻿@model Hotel.Models.Acompaniante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Acompaniante</legend>
+
+    <div class="display-label">cliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.Identificacion)
+    </div>
+
+    <div class="display-label">Edad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Edad)
+    </div>
+
+    <div class="display-label">Nombres</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombres)
+    </div>
+
+    <div class="display-label">Apellidos</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+
+    <div class="display-label">Identificacion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Identificacion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AcompanianteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

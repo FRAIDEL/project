@@ -1,0 +1,24 @@
+﻿body
+{
+    width:100%;
+    margin:auto;
+    min-width:950px;
+    max-width:950px;
+}
+#slider {
+    width: 950px;
+    /*height: 291px;*/
+    height: 280px;
+    background: #FFF;
+    border-bottom: 2px solid #FFF;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+#slider img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+

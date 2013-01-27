@@ -1,0 +1,90 @@
+﻿@model Hotel.Models.Gastos
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link type="text/css" href="@Url.Content("~/Content/datePicker/jquery.ui.all.css")" rel="Stylesheet" />
+<link type="text/css" href="@Url.Content("~/Content/datePicker/demos.css")" rel="Stylesheet" />
+@*<script src="@Url.Content("~/Content/datePicker/jquery-1.4.4.js")" type="text/javascript"></script>*@
+<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/datePicker/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#Fecha").datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+<table>
+@using (Html.BeginForm("Create", "Gastos", FormMethod.Post, new { @class = "create_gastos" }))
+{
+    @Html.ValidationSummary(true)
+    <tr>
+        <td>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Fecha)
+                @Html.ValidationMessageFor(model => model.Fecha)
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+            Nombre Articulo(s)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Items)
+                @Html.ValidationMessageFor(model => model.Items)
+            </div>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.Cantidad_items)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Cantidad_items)
+                @Html.ValidationMessageFor(model => model.Cantidad_items)
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Descripcion)
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.Precio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Precio)
+            @Html.ValidationMessageFor(model => model.Precio)
+        </div>
+        </td>
+    </tr>       
+    <tr>
+        <td>
+                @* create_gastos no tiene function en Events.js *@
+            <input type="submit" value="Crear" id="create_gastos" />    
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+        
+}
+</table>
