@@ -69,6 +69,7 @@ namespace Hotel.Controllers
         public ActionResult show_hab_disponibles(query_hab_disponibles Query_Disp)
         {
             List<Habitacion> habitacions = db.Habitacion.ToList();
+            List<Habitacion> habit_to_list = db.Habitacion.ToList();
             List<Habitacion> habitFree = new List<Habitacion>();
             // consulto x c/u de las habitaciones
             foreach (Habitacion habit in habitacions)
@@ -77,22 +78,25 @@ namespace Hotel.Controllers
                 {
                     // consulto si la habitacion no esta ocupada en esa fecha
                     if (!(Query_Disp.date_init < r.Fecha_ingreso
-                          && Query_Disp.date_end < r.Fecha_ingreso
-                          || Query_Disp.date_init > r.Fecha_egreso))
+                          && Query_Disp.date_end <= r.Fecha_ingreso
+                          || Query_Disp.date_init >= r.Fecha_egreso))
                     {
                         // quito la habitacion de la lista de habitaciones
                         //habitFree.Add(r.habitacion);
-                        habitacions.Remove(r.habitacion);
+                        habit_to_list.Remove(r.habitacion);
+                        //habitacions.Remove(r.habitacion);
+                        ViewBag.no = "entro..!";
                         //foreach(var i in habitacions){
                         //    if(!(i.HabitacionID == r.habitacion.HabitacionID)){
                         //        habitFree.Add(r.habitacion);
                         //    }
                         //}
                     }
+                    //else { ViewBag.no = "la condicion no se cumple"; }
                 }
             }
             // return PartialView("_ListDisp", habitacions);
-            return View("Index", habitacions);
+            return View("Index", habit_to_list);
         }
 
         //public ActionResult listDisp() {

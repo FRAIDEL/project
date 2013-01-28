@@ -22,6 +22,7 @@ $(document).ready(function () {
     $('#Edad').numeric();
     $('#Identificacion').numeric();
     $('#Cantidad_items').numeric();
+//    $('#link_create_acompaniantes').hide();
 });
 //***
 function setCedula() {
@@ -93,12 +94,12 @@ $(document).ready(function () {
             type: 'post',
             success: hide_verificar_titular,
         };
+        $('#link_create_acompaniantes').fadeIn('slow');
         $('.class_verifica_cedula').ajaxForm(option);
     });
 });
 function hide_verificar_titular() {
     $('#Identificacion').attr("value", $('#cedula_titular').val());
-    $('#upload_cedula_titular').hide();
     $.unblockUI();
 }
 $(document).ready(function () {

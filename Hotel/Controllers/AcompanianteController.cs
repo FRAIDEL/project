@@ -9,7 +9,7 @@ using Hotel.Models;
 
 namespace Hotel.Controllers
 { 
-    public class AcompaniantesController : Controller
+    public class AcompanianteController : Controller
     {
         private hotelEntities5 db = new hotelEntities5();
 
@@ -42,7 +42,7 @@ namespace Hotel.Controllers
         public ActionResult Create()
         {
             //ViewBag.ClienteID = new SelectList(db.Cliente, "ClienteID", "Identificacion");
-            return PartialView();
+            return PartialView("Create");
         } 
 
         //
@@ -52,25 +52,25 @@ namespace Hotel.Controllers
         public ActionResult Create(Acompaniantes Acompaniantes)
         {
             try {
+                DateTime currentDate = DateTime.UtcNow.Date;
                 Acompaniantes.ClienteID = ClienteController.ID_Cliente;
-                Acompaniantes.Fecha_actual = DateTime.Today;
+                Acompaniantes.Fecha_actual = DateTime.UtcNow;
                 if (ModelState.IsValid)
                 {
                     db.Acompaniantes.AddObject(Acompaniantes);
                     db.SaveChanges();
                     // consulto todos los Acompaniantess de este cliente y en este dia
-                    List<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == ClienteController.ID_Cliente 
-                        && a.Fecha_actual == DateTime.Today).ToList();
+                    //List<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == ClienteController.ID_Cliente 
+                    IEnumerable<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == ClienteController.ID_Cliente
+                        && a.Fecha_actual == currentDate);
                     ViewBag.id_cliente = ClienteController.ID_Cliente;
-                    return PartialView("_show_Acompaniantess", acomp);
+                    return PartialView("_show_Acompaniantes", acomp);
                 }
             }catch(Exception er){
                 ViewBag.error = er.ToString();
             }
-            
-
             //ViewBag.ClienteID = new SelectList(db.Cliente, "ClienteID", "Identificacion", Acompaniantes.ClienteID);
-            return View(Acompaniantes);
+            return PartialView(Acompaniantes);
         }
         
         //

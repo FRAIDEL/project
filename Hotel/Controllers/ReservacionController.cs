@@ -44,6 +44,7 @@ namespace Hotel.Controllers
             TimeSpan current_time = DateTime.UtcNow.TimeOfDay;
             ViewBag.hora = current_time.Hours + ":" + current_time.Minutes + ":" + current_time.Seconds;
             ViewBag.HabitacionID_ = habit.HabitacionID;
+            ViewBag.num_hab = habit.Num_habitacion;
             return PartialView("Create");
         } 
 
@@ -69,18 +70,18 @@ namespace Hotel.Controllers
                     TimeSpan? count_dias = (reserva.Fecha_egreso - reserva.Fecha_ingreso);
 
                     reserva.Cantidad_dias = count_dias.Value.Days;
-                    reserva.Fecha_entrega = DateTime.UtcNow.Date;
+                    //reserva.Fecha_entrega = DateTime.UtcNow.Date;
                     reserva.Fecha_devolucion = DateTime.UtcNow.Date;
                     if (reserva.Estado == "true")
                     {
-                        reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.UtcNow.ToShortTimeString();
+                        //reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.UtcNow.ToShortTimeString();
                         // OJO si hora_devolucion es null (no se ha devuelto la Habitacion)
                         reserva.Hora_devolucion = null;
                     }
                     else
                     {
                         // OJO si hora_entrega y hora_devolucion es null (ni siquiera se ha entregado la Habitacion)
-                        reserva.Hora_entrega = null;
+                        //reserva.Hora_entrega = null;
                         reserva.Hora_devolucion = null;
                     }
                     try
@@ -89,7 +90,7 @@ namespace Hotel.Controllers
                         reserva.ClienteID_ = ClienteController.ID_Cliente;
                         //reserva.ClienteID = 1;
                         reserva.Fecha_creacion = DateTime.UtcNow.Date;
-                        reserva.Fecha_ultima_modificacion = DateTime.UtcNow.Date;
+                        reserva.Fecha_ultima_modificacion = null;// DateTime.UtcNow.Date;
                         db.Reserva.AddObject(reserva);
                         db.SaveChanges();
                         return RedirectToAction("Index");
@@ -147,12 +148,12 @@ namespace Hotel.Controllers
                     db.ObjectStateManager.ChangeObjectState(reserva, EntityState.Modified);
 
 
-                    reserva.Fecha_entrega = DateTime.UtcNow.Date;
-                    reserva.Fecha_devolucion = DateTime.UtcNow.Date;
+                    //reserva.Fecha_entrega = DateTime.UtcNow.Date;
+                    reserva.Fecha_devolucion = null;// DateTime.UtcNow.Date;
                     if (reserva.Estado == "true")
                     {
                         //reserva.Fecha_entrega = DateTime.UtcNow;
-                        reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.ToShortTimeString();
+                        //reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.ToShortTimeString();
                         //reserva.Fecha_devolucion = DateTime.UtcNow;
                         // OJO si hora_devolucion es null (no se ha devuelto la Habitacion)
                         reserva.Hora_devolucion = null;
@@ -160,7 +161,7 @@ namespace Hotel.Controllers
                     else
                     {                        
                         // OJO si hora_entrega y hora_devolucion es null (ni siquiera se ha entregado la Habitacion)
-                        reserva.Hora_entrega = null;
+                        //reserva.Hora_entrega = null;
                         reserva.Hora_devolucion = null;
                     }
                     db.SaveChanges();
@@ -208,7 +209,7 @@ namespace Hotel.Controllers
             //foreach(var i in res.cliente.Acompaniante){
             //    acomp.Add(i);
             //}
-            Habitacion hbt = db.Habitacion.SingleOrDefault(h => h.HabitacionID == res.HabitacionID_);
+            //Habitacion hbt = db.Habitacion.SingleOrDefault(h => h.HabitacionID == res.HabitacionID_);
             _RegistroCliente rq = new _RegistroCliente
             {
                 ClienteID = res.ClienteID_,
@@ -219,8 +220,8 @@ namespace Hotel.Controllers
                 Total = res.Total,
                 Abonar = res.Abono,
                 Restante = res.Restante,
-                Fecha_entrega = res.Fecha_entrega,
-                hora_entrega = res.Hora_entrega,
+                //Fecha_entrega = res.Fecha_entrega,
+                //hora_entrega = res.Hora_entrega,
                 Fecha_devolucion = res.Fecha_devolucion,
                 hora_devolucion = res.Hora_devolucion,
                 cliente = res.cliente,

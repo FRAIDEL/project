@@ -27,6 +27,7 @@
 
 <span id="ListHabitacines">
 <h2>Lista de Habitaciones</h2>
+condicion = @ViewBag.no
 @ViewBag.b
 @ViewBag.error
 <p>
@@ -78,17 +79,19 @@
                 HttpMethod = "GET",
                 Confirm = "Esta SEGURO(A) que desea ELIMIMAR esta HABITACION ..?",
             })
+            <br />
+            @Ajax.ActionLink("Inventario", "showMyArticulos", "Articulo", new { id = item.HabitacionID },
+            new AjaxOptions
+            {
+                LoadingElementId = "Uploading17",
+                UpdateTargetId = "ListHabitacines",
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+            }
+    )
         </p>
         </li>
-    @Ajax.ActionLink("Inventario", "showMyArticulos", "Articulo", new { id = item.HabitacionID },
-        new AjaxOptions
-        {
-            LoadingElementId = "Uploading17",
-            UpdateTargetId = "ListHabitacines",
-            HttpMethod = "GET",
-            InsertionMode = InsertionMode.Replace,
-        }
-    )
+    
     <img id="Uploading17" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
 }, 
 </ul>

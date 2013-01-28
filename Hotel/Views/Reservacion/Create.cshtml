@@ -20,6 +20,9 @@
             changeYear: true
         });
     });
+    $(function () {
+        $('#link_create_acompaniantes').hide();
+    });
 </script>
 
 <img src="@Url.Content("~/Content/images/puerta.jpg")" width="160px" height="190px" />
@@ -27,7 +30,7 @@
 <h3>
 @ViewBag.error
 @ViewBag.habitacionLibre
-<b><i>Habitacion @ViewBag.nameHabitacion</i></b>
+<b><i>Habitacion @ViewBag.num_hab</i></b>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -96,15 +99,18 @@
                 <!-- Aqui guardare la data del user -->
             </div> 
         <!-- Acompaniantes -->
-        @Ajax.ActionLink("Create Acompañantes", "Create", "Acompaniante",
+        <div id="link_create_acompaniantes">
+        @Ajax.ActionLink("Create Acompa&ntilde;antes", "Create", "Acompaniante",
             new AjaxOptions
             {
                 HttpMethod = "GET",
                 InsertionMode = InsertionMode.Replace,
-                LoadingElementId = "Uploading",
+                LoadingElementId = "Uploading2",
                 UpdateTargetId = "Acampaniante"
             });
-            <div id="Acampaniante">Acompañante</div>
+        </div>
+        <img id="Uploading2" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+            <div id="Acampaniante">Acompa&ntilde;ante</div>
             <!-- lista de Acompaniantes -->
             <div id="list_Acompaniantes">
                 <!-- here..! -->

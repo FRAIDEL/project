@@ -2067,54 +2067,6 @@ namespace Hotel.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> Fecha_entrega
-        {
-            get
-            {
-                return _Fecha_entrega;
-            }
-            set
-            {
-                OnFecha_entregaChanging(value);
-                ReportPropertyChanging("Fecha_entrega");
-                _Fecha_entrega = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Fecha_entrega");
-                OnFecha_entregaChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _Fecha_entrega;
-        partial void OnFecha_entregaChanging(Nullable<global::System.DateTime> value);
-        partial void OnFecha_entregaChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> Hora_entrega
-        {
-            get
-            {
-                return _Hora_entrega;
-            }
-            set
-            {
-                OnHora_entregaChanging(value);
-                ReportPropertyChanging("Hora_entrega");
-                _Hora_entrega = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Hora_entrega");
-                OnHora_entregaChanged();
-            }
-        }
-        private Nullable<global::System.TimeSpan> _Hora_entrega;
-        partial void OnHora_entregaChanging(Nullable<global::System.TimeSpan> value);
-        partial void OnHora_entregaChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.DateTime> Fecha_devolucion
         {
             get

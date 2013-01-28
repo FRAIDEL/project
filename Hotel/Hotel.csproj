@@ -274,13 +274,16 @@
     <Content Include="Views\Cliente\getDataCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Reservacion\Edit.cshtml" />
+    <Content Include="Views\Reservacion\Edit_nop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\ConnectMySQL.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ConnectMySQL.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Reservacion\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

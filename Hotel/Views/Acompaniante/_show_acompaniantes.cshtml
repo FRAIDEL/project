@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Hotel.Models.Acompaniantes>
 
-Acompañante(s)
-<table @*width="100px"*@>
+Acompa&ntilde;ante(s)
+<table>
     <tr>
         <td align="center">Identificacion</td>
         <td align="center">Lugar de expedicion</td>
@@ -54,7 +54,5 @@ Acompañante(s)
             HttpMethod = "POST",
             LoadingElementId = "Uploading",
             UpdateTargetId = "upload_cliente",
-            Confirm = "Confirma que desea Eliminar este Cliente y sus acompañantes..?, si es asi haga click en Aceptar/ok, de lo contrario en Cancelar",
-            //OnSuccess = "fdff" // aqui debo ocultar los froms y mostrar la ventana para crear reservas, Cliente y 
-            // Acompaniantes como al ionicio
+            Confirm = "Confirma que desea Eliminar este Cliente y sus acompa&ntilde;antes..?, si es asi haga click en Aceptar/ok, de lo contrario en Cancelar",
         })

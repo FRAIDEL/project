@@ -1,0 +1,144 @@
+﻿@model Hotel.Models.Reserva
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+         @ViewBag.error
+        @Html.HiddenFor(model => model.HabitacionID_)
+        @Html.HiddenFor(model => model.ReservacionID)
+        @Html.HiddenFor(model => model.ClienteID_)
+        @Html.HiddenFor(model => model.Fecha_creacion.Value.Date)
+        @Html.HiddenFor(model => model.IP_creacion)
+        @Html.HiddenFor(model => model.User_creacion)
+
+        @Html.HiddenFor(model => model.ReservacionID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha_ingreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha_ingreso)
+            @Html.ValidationMessageFor(model => model.Fecha_ingreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Hora_ingreso)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hora_ingreso)
+            @Html.ValidationMessageFor(model => model.Hora_ingreso)
+        </div>
+
+        <div class="editor-label">
+            Fecha egreso
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha_egreso)
+            @Html.ValidationMessageFor(model => model.Fecha_egreso)
+        </div>
+
+        <div class="editor-label">
+            Hora egreso
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hora_egreso)
+            @Html.ValidationMessageFor(model => model.Hora_egreso)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cantidad_dias)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cantidad_dias)
+            @Html.ValidationMessageFor(model => model.Cantidad_dias)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Total)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Total)
+            @Html.ValidationMessageFor(model => model.Total)
+        </div>
+
+        <div class="editor-label">
+            Abono
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Abono)
+            @Html.ValidationMessageFor(model => model.Abono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Restante)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Restante)
+            @Html.ValidationMessageFor(model => model.Restante)
+        </div>
+
+        <div class="editor-label">
+            Fecha creacion
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha_creacion)
+            @Html.ValidationMessageFor(model => model.Fecha_creacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IP_creacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IP_creacion)
+            @Html.ValidationMessageFor(model => model.IP_creacion)
+        </div>
+        <input type="hidden" id="User_modificacion" name="User_modificacion" value="@User.Identity.Name" />
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Estado)
+            @Html.ValidationMessageFor(model => model.Estado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha_entrega)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha_entrega)
+            @Html.ValidationMessageFor(model => model.Fecha_entrega)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Hora_entrega)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hora_entrega)
+            @Html.ValidationMessageFor(model => model.Hora_entrega)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha_devolucion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha_devolucion)
+            @Html.ValidationMessageFor(model => model.Fecha_devolucion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Observacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Observacion)
+            @Html.ValidationMessageFor(model => model.Observacion)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

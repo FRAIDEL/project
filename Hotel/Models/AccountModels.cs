@@ -12,17 +12,17 @@ namespace Hotel.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña actual")]
+        [Display(Name = "Contrase&ntilde;a actual")]
         public string OldPassword { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nueva Contraseña")]
+        [Display(Name = "Nueva Contrase&ntilde;a")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirmar Contraseña")]
+        [Display(Name = "Confirmar Contrase&ntilde;a")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
@@ -35,7 +35,7 @@ namespace Hotel.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
+        [Display(Name = "Contrase&ntilde;a")]
         public string Password { get; set; }
 
         [Display(Name = "Recordarme?")]
@@ -66,15 +66,15 @@ namespace Hotel.Models
         [Display(Name = "Nombres y Apellidos")]
         public string Nombres { get; set; }
 
-        [Required(ErrorMessage = "El campo de 'Contraseña' es de caracter obligatorio")]
+        [Required(ErrorMessage = "El campo de 'Contrase&ntilde;a' es de caracter obligatorio")]
         [StringLength(25, ErrorMessage = "El {0} debe tener como minimo {2} characteres de largo", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
+        [Display(Name = "Contrase&ntilde;a")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirmar Contraseña")]
-        [Compare("Password", ErrorMessage = "La contraseña y Confirmacion de contraseña no son Inguales")]
+        [Display(Name = "Confirmar Contrase&ntilde;a")]
+        [Compare("Password", ErrorMessage = "La contrase&ntilde;a y Confirmacion de contrase&ntilde;a no son Inguales")]
         public string ConfirmPassword { get; set; }
     }
 }
