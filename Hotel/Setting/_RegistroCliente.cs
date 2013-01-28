@@ -12,7 +12,7 @@ using Hotel.Models;
 //using System.Web.Mvc;
 //using Hotel.Models;
 
-namespace Hotel.Setting
+namespace Hotel.Models
 {
     public class _RegistroCliente
     {
@@ -31,6 +31,7 @@ namespace Hotel.Setting
         public TimeSpan? hora_devolucion { get; set; } // hora en q se devolucion la habitacion
         public string Observaciones { get; set; }
         public TimeSpan hora_ingreso { get; set; }
+        public string Num_habitacion { get; set; }
 
         public virtual Cliente cliente { get; set; }
         public virtual Habitacion habitacion { get; set; }

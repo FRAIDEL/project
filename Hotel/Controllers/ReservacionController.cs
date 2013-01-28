@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Hotel.Setting;
 using Hotel.Controllers;
 using ReportManagement;
 using Hotel.Models;
@@ -41,10 +40,10 @@ namespace Hotel.Controllers
 
         public ActionResult Create(int id)
         {
-            //var habit = db.Habitacion.SingleOrDefault(h => h.HabitacionID == id);
-            //TimeSpan current_time = DateTime.UtcNow.TimeOfDay;
-            //ViewBag.hora = current_time.Hours + ":" + current_time.Minutes + ":" + current_time.Seconds;
-            //ViewBag.HabitacionID = habit.HabitacionID;
+            var habit = db.Habitacion.SingleOrDefault(h => h.HabitacionID == id);
+            TimeSpan current_time = DateTime.UtcNow.TimeOfDay;
+            ViewBag.hora = current_time.Hours + ":" + current_time.Minutes + ":" + current_time.Seconds;
+            ViewBag.HabitacionID_ = habit.HabitacionID;
             return PartialView("Create");
         } 
 
@@ -159,8 +158,7 @@ namespace Hotel.Controllers
                         reserva.Hora_devolucion = null;
                     }
                     else
-                    {
-                        
+                    {                        
                         // OJO si hora_entrega y hora_devolucion es null (ni siquiera se ha entregado la Habitacion)
                         reserva.Hora_entrega = null;
                         reserva.Hora_devolucion = null;
@@ -210,6 +208,7 @@ namespace Hotel.Controllers
             //foreach(var i in res.cliente.Acompaniante){
             //    acomp.Add(i);
             //}
+            Habitacion hbt = db.Habitacion.SingleOrDefault(h => h.HabitacionID == res.HabitacionID_);
             _RegistroCliente rq = new _RegistroCliente
             {
                 ClienteID = res.ClienteID_,
@@ -225,6 +224,7 @@ namespace Hotel.Controllers
                 Fecha_devolucion = res.Fecha_devolucion,
                 hora_devolucion = res.Hora_devolucion,
                 cliente = res.cliente,
+                //habitacion = hbt,
                 habitacion = res.habitacion,
                 Observaciones = res.Observacion,
                 hora_ingreso = current_time,

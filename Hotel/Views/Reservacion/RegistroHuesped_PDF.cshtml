@@ -13,16 +13,16 @@
     @*<tr bgcolor="#777777" color="#ffffff">*@
     <tr>
         <td><b>F. INGRESO</b></td>
-        <td><b>DIA:</b> @Model.Fecha_ingreso.Day</td>
-        <td><b>MES:</b> @Model.Fecha_ingreso.Month</td>
-        <td><b>A&Ntilde;O:</b> @Model.Fecha_ingreso.Year</td>
+        <td><b>DIA:</b> @Model.Fecha_ingreso.Value.Day</td>
+        <td><b>MES:</b> @Model.Fecha_ingreso.Value.Month</td>
+        <td><b>A&Ntilde;O:</b> @Model.Fecha_ingreso.Value.Year</td>
         <td><b>HORA:</b> @Model.hora_ingreso.Hours:@Model.hora_ingreso.Minutes:@Model.hora_ingreso.Seconds</td>
     </tr>
     <tr>
         <td><b>F. EGRESO</b></td>
-        <td><b>DIA:</b> @Model.Fecha_salida.Day</td>
-        <td><b>MES:</b> @Model.Fecha_salida.Month</td>
-        <td><b>A&Ntilde;O:</b> @Model.Fecha_salida.Year</td>
+        <td><b>DIA:</b> @Model.Fecha_salida.Value.Day</td>
+        <td><b>MES:</b> @Model.Fecha_salida.Value.Month</td>
+        <td><b>A&Ntilde;O:</b> @Model.Fecha_salida.Value.Year</td>
         <td><b>HORA:</b></td>
     </tr>
 </table>
@@ -30,7 +30,7 @@
     @*<tr></tr>*@
     <tr>
         <td><b>NOMBRE:</b> @Model.cliente.Nombres</td>
-        <td><b>NACIONALIDAD:</b> @Model.cliente.NacionaLidad</td>
+        <td><b>NACIONALIDAD:</b> @Model.cliente.Nacionalidad</td>
     </tr>
     <tr>
         <td><b>CEDULA Nº:</b> @Model.cliente.Identificacion</td>
@@ -44,7 +44,7 @@
 </table>
 <table border="1" cellpadding="3" cellspacing="3">
     <tr>
-        <td><b>CIUDAD:</b> @Model.cliente.Ciudad</td>
+        <td><b>CIUDAD:</b> @Model.cliente.Cuidad</td>
         <td><b>TEL. FIJO:</b> @Model.cliente.Telefono_fijo</td>
     </tr>
     <tr>
@@ -56,8 +56,8 @@
         <td><b>DESTINO FINAL:</b> @Model.cliente.Destino_final</td>
     </tr>
     <tr>
-        <td><b>MOTIVO DEL VIAJE:</b> @Model.cliente.Motivo_del_Viaje</td>
-        <td><b>CLASE DE VEHICULO:</b> @Model.cliente.Clase_de_vehiculo</td>
+        <td><b>MOTIVO DEL VIAJE:</b> @Model.cliente.Motivo_del_viaje</td>
+        <td><b>CLASE DE VEHICULO:</b> @Model.cliente.Clase_vehiculo</td>
     </tr>
 </table>
 <table border="1" cellpadding="3" cellspacing="3">
@@ -75,7 +75,7 @@
         <td align="center"><b>EDAD</b></td>
         <td align="center"><b>EXPEDIDA EN</b></td>
     </tr>
-    @foreach(var i in Model.Acompaniantes){
+    @foreach(var i in Model.acpetes){
         <tr><td align="center">@i.Nombres @i.Apellidos</td></tr>
         <tr><td align="center">@i.Identificacion</td></tr>
         <tr><td align="center">@i.Edad</td></tr>

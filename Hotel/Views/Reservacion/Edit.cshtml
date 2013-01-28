@@ -7,14 +7,14 @@
     @Html.ValidationSummary(true)
     <fieldset>
          @ViewBag.error
-        @Html.HiddenFor(model => model.HabitacionID)
-        @Html.HiddenFor(model => model.ReservaID)
-        @Html.HiddenFor(model => model.ClienteID)
-        @Html.HiddenFor(model => model.fecha_creacion.Date)
+        @Html.HiddenFor(model => model.HabitacionID_)
+        @Html.HiddenFor(model => model.ReservacionID)
+        @Html.HiddenFor(model => model.ClienteID_)
+        @Html.HiddenFor(model => model.Fecha_creacion.Value.Date)
         @Html.HiddenFor(model => model.IP_creacion)
         @Html.HiddenFor(model => model.User_creacion)
 
-        @Html.HiddenFor(model => model.ReservaID)
+        @Html.HiddenFor(model => model.ReservacionID)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Fecha_ingreso)
@@ -33,19 +33,19 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Fecha_salida)
+            Fecha egreso
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Fecha_salida)
-            @Html.ValidationMessageFor(model => model.Fecha_salida)
+            @Html.EditorFor(model => model.Fecha_egreso)
+            @Html.ValidationMessageFor(model => model.Fecha_egreso)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Hora_salida)
+            Hora egreso
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Hora_salida)
-            @Html.ValidationMessageFor(model => model.Hora_salida)
+            @Html.EditorFor(model => model.Hora_egreso)
+            @Html.ValidationMessageFor(model => model.Hora_egreso)
         </div>
 
         <div class="editor-label">
@@ -65,11 +65,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Abonar)
+            Abono
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Abonar)
-            @Html.ValidationMessageFor(model => model.Abonar)
+            @Html.EditorFor(model => model.Abono)
+            @Html.ValidationMessageFor(model => model.Abono)
         </div>
 
         <div class="editor-label">
@@ -81,11 +81,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fecha_creacion)
+            Fecha creacion
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.fecha_creacion)
-            @Html.ValidationMessageFor(model => model.fecha_creacion)
+            @Html.EditorFor(model => model.Fecha_creacion)
+            @Html.ValidationMessageFor(model => model.Fecha_creacion)
         </div>
 
         <div class="editor-label">
@@ -114,11 +114,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.hora_entrega)
+            @Html.LabelFor(model => model.Hora_entrega)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.hora_entrega)
-            @Html.ValidationMessageFor(model => model.hora_entrega)
+            @Html.EditorFor(model => model.Hora_entrega)
+            @Html.ValidationMessageFor(model => model.Hora_entrega)
         </div>
 
         <div class="editor-label">
@@ -130,11 +130,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Observaciones)
+            @Html.LabelFor(model => model.Observacion)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Observaciones)
-            @Html.ValidationMessageFor(model => model.Observaciones)
+            @Html.EditorFor(model => model.Observacion)
+            @Html.ValidationMessageFor(model => model.Observacion)
         </div>
 
         <p>
