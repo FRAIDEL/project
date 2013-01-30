@@ -81,21 +81,11 @@ namespace Hotel.Controllers
                           && Query_Disp.date_end <= r.Fecha_ingreso
                           || Query_Disp.date_init >= r.Fecha_egreso))
                     {
-                        // quito la habitacion de la lista de habitaciones
-                        //habitFree.Add(r.habitacion);
                         habit_to_list.Remove(r.habitacion);
-                        //habitacions.Remove(r.habitacion);
-                        ViewBag.no = "entro..!";
-                        //foreach(var i in habitacions){
-                        //    if(!(i.HabitacionID == r.habitacion.HabitacionID)){
-                        //        habitFree.Add(r.habitacion);
-                        //    }
-                        //}
+                        
                     }
-                    //else { ViewBag.no = "la condicion no se cumple"; }
                 }
             }
-            // return PartialView("_ListDisp", habitacions);
             return View("Index", habit_to_list);
         }
 

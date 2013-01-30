@@ -58,52 +58,63 @@ namespace Hotel.Controllers
             {
                 if (valid_Date(reserva.Fecha_ingreso, reserva.Fecha_egreso))
                 {
-                    // ESTO ERA LO Q ESTABA JODIENDO
-                    // valido q la habitacion este disponible en esa fecha
-                    //var habitacionIsFree = db.reservaciones.SingleOrDefault(
-                    //    r => reserva.Fecha_ingreso < r.Fecha_ingreso
-                    //        && reserva.Fecha_salida > r.Fecha_salida
-                    //        && r.HabitacionID == reserva.HabitacionID);
-                    //if (habitacionIsFree == null) // la habitacion esta libre
-                    //{
-                    reserva.IP_creacion = Request.ServerVariables["REMOTE_ADDR"];
-                    TimeSpan? count_dias = (reserva.Fecha_egreso - reserva.Fecha_ingreso);
+                    int cont = new int();
+                    cont = 0;
+                    // busco las reservas de esa habitacion
+                    var res = db.Reserva.Where(r => r.HabitacionID_ == reserva.HabitacionID_);
+                    // valido q la habitacion este disponible
+                    foreach (Reserva r in res)
+                    {
+                        // consulto si la habitacion no esta ocupada en esa fecha
+                        if(!(reserva.Fecha_ingreso < r.Fecha_ingreso
+                            && reserva.Fecha_egreso <= r.Fecha_ingreso
+                            || reserva.Fecha_ingreso >= r.Fecha_egreso) )
+                        {
+                            // esta ocupada
+                            cont++;
+                        }
+                    }
+                    if (cont > 0)
+                    {
+                        var hbt = db.Habitacion.SingleOrDefault(h => h.HabitacionID == reserva.HabitacionID_);
+                        ViewBag.no_disponible = "LA HABITACION " + hbt.Num_habitacion + " NO ESTA DISPONIBLE EN EL RANGO DE FECHAS SOLICITADO..! ";
+                    }
+                    else {
+                        // entonces creo la reserva
+                        reserva.IP_creacion = Request.ServerVariables["REMOTE_ADDR"];
+                        TimeSpan? count_dias = (reserva.Fecha_egreso - reserva.Fecha_ingreso);
 
-                    reserva.Cantidad_dias = count_dias.Value.Days;
-                    //reserva.Fecha_entrega = DateTime.UtcNow.Date;
-                    reserva.Fecha_devolucion = DateTime.UtcNow.Date;
-                    if (reserva.Estado == "true")
-                    {
-                        //reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.UtcNow.ToShortTimeString();
-                        // OJO si hora_devolucion es null (no se ha devuelto la Habitacion)
-                        reserva.Hora_devolucion = null;
+                        reserva.Cantidad_dias = count_dias.Value.Days;
+                        //reserva.Fecha_entrega = DateTime.UtcNow.Date;
+                        reserva.Fecha_devolucion = DateTime.UtcNow.Date;
+                        if (reserva.Estado == "true")
+                        {
+                            //reserva.Hora_entrega = DateTime.UtcNow.TimeOfDay;//.UtcNow.ToShortTimeString();
+                            // OJO si hora_devolucion es null (no se ha devuelto la Habitacion)
+                            reserva.Hora_devolucion = null;
+                        }
+                        else
+                        {
+                            // OJO si hora_entrega y hora_devolucion es null (ni siquiera se ha entregado la Habitacion)
+                            //reserva.Hora_entrega = null;
+                            reserva.Hora_devolucion = null;
+                        }
+                        try
+                        {
+                            // guardo la reservacion
+                            reserva.ClienteID_ = ClienteController.ID_Cliente;
+                            //reserva.ClienteID = 1;
+                            reserva.Fecha_creacion = DateTime.UtcNow.Date;
+                            reserva.Fecha_ultima_modificacion = null;// DateTime.UtcNow.Date;
+                            db.Reserva.AddObject(reserva);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception er)
+                        {
+                            ViewBag.error = er.ToString();
+                        }
                     }
-                    else
-                    {
-                        // OJO si hora_entrega y hora_devolucion es null (ni siquiera se ha entregado la Habitacion)
-                        //reserva.Hora_entrega = null;
-                        reserva.Hora_devolucion = null;
-                    }
-                    try
-                    {
-                        // guardo la reservacion
-                        reserva.ClienteID_ = ClienteController.ID_Cliente;
-                        //reserva.ClienteID = 1;
-                        reserva.Fecha_creacion = DateTime.UtcNow.Date;
-                        reserva.Fecha_ultima_modificacion = null;// DateTime.UtcNow.Date;
-                        db.Reserva.AddObject(reserva);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    catch (Exception er)
-                    {
-                        ViewBag.error = er.ToString();
-                    }
-                    //ViewBag.habitacionLibre = "si esta libre";
-                    //}
-                    //else {
-                    //    ViewBag.habitacionLibre = "no esta libre";
-                    //}
                 }
                 else { ViewBag.fecha_incorrecta = "La fecha de Ingreso es MENOR o Igual a la fecha de SALIDA, por favor rectifique..!"; }
                     

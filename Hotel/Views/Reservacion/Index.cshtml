@@ -5,8 +5,77 @@
     <a class="url fn n" href="#" title="" rel="author">
 @model IEnumerable<Hotel.Models.Reserva>
 
+@{
+    WebGrid grid = new WebGrid(Model);
+ }
 @ViewBag.total
 @ViewBag.error
+
+@*@grid.GetHtml(columns: new[]{ grid.Column("Nombres", format: f=>f.cliente.Nombres)})*@
+@grid.GetHtml(columns: new[]{ 
+    grid.Column("", 
+        header: "Num. h",
+        format: i=>i.habitacion.Num_habitacion
+    ),
+    grid.Column("", 
+        header: "Visitante",
+        format: @<a data-ajax="true" data-ajax-loading="#Uploading" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#details_cliente"   href="@Url.Action("Details", "Cliente", new { id = item.ClienteID_})">@item.cliente.Nombres</a>
+    ),
+    grid.Column("", 
+        header: "fecha creacion",
+        format: i=>i.Fecha_creacion
+    ),
+    grid.Column("", 
+        header: "fecha ingreso",
+        format: i=>i.Fecha_ingreso
+    ),
+    grid.Column("", 
+        header: "fecha egreso",
+        format: i=>i.Fecha_egreso
+    ),
+    grid.Column("", 
+        header: "cant. dias",
+        format: i=>i.Cantidad_dias
+    ),
+    grid.Column("", 
+        header: "estado",
+        format: i=>i.Estado
+    ),
+    grid.Column("", 
+        header: "total",
+        format: i=>i.Total
+    ),
+    grid.Column("", 
+        header: "abono",
+        format: i=>i.Abono
+    ),
+    grid.Column("", 
+        header: "resta",
+        format: i=>i.Restante
+    ),
+    grid.Column("", 
+        header: "fecha devolucion",
+        format: i=>i.Fecha_devolucion
+    ),
+    grid.Column("", 
+        header: "",
+        format: @<a data-ajax="true" data-ajax-loading="#Uploading" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#load_Edit" href="@Url.Action("Edit", "Reservacion", new { id = item.ReservacionID })" >editar</a>
+    ), 
+    grid.Column("", 
+        header: "",
+        format: @<a data-ajax="true" data-ajax-confirm="Esta seguro(a) que desea ELIMINAR ESTA RESERVACION DE LA BASE DE DATOS..?" data-ajax-method="post" href="@Url.Action("Delete", "Reservacion", new { id = item.ReservacionID})" >cancelar</a>
+    ),
+    grid.Column("", 
+        header: "",
+        format: @<text>
+                    @Html.ActionLink("Registro PDF", "RegistroHuesped_PDF", new { id = item.ReservacionID }, new { target = "_blank" })
+                </text>
+    ),  
+    
+})
+
+
+this is my
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
@@ -71,10 +140,11 @@
         </th>
     </tr>
 </thead>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
-        @Ajax.ActionLink( item.cliente.Nombres, "Details", "Cliente", new { id = item.ClienteID_ },
+        @Ajax.ActionLink(item.cliente.Nombres, "Details", "Cliente", new { id = item.ClienteID_ },
             new AjaxOptions
             {
                 LoadingElementId = "Uploading",

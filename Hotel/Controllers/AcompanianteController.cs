@@ -16,13 +16,15 @@ namespace Hotel.Controllers
         //
         // GET: /Acompaniantes/
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
+            DateTime dt = DateTime.UtcNow.Date;
             //var Acompaniantess = db.Acompaniantess.Include(a => a.cliente);
             //return View(Acompaniantess.ToList());
             // consulto todos los Acompaniantess de este cliente y en este dia
-            List<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == ClienteController.ID_Cliente
-                && a.Fecha_actual == DateTime.Today).ToList();
+            //List<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == ClienteController.ID_Cliente
+            List<Acompaniantes> acomp = db.Acompaniantes.Where(a => a.ClienteID == id
+                && a.Fecha_actual == dt).ToList();
             ViewBag.id_cliente = ClienteController.ID_Cliente;
             return PartialView("_show_Acompaniantess", acomp);
         }

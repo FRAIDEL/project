@@ -24,8 +24,8 @@
         $('#link_create_acompaniantes').hide();
     });
 </script>
-
 <img src="@Url.Content("~/Content/images/puerta.jpg")" width="160px" height="190px" />
+<h2><b><i>@ViewBag.no_disponible</i></b></h2>
 <h2>Crear Reservacion</h2>
 <h3>
 @ViewBag.error
@@ -40,6 +40,7 @@
                 <td>
                     <div>
                         <input type="hidden" value="@ViewBag.HabitacionID_" id="HabitacionID_" name="HabitacionID_" />
+                        <input type="hidden" value="@ViewBag.num_hab" id="Num_habitacion" name="Num_habitacion" />
                     </div>
                     <div>
                         @Html.LabelFor(model => model.Fecha_ingreso)
