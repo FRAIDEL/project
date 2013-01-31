@@ -72,13 +72,8 @@ namespace Hotel.Controllers
 
         public ActionResult Register()
         {
-            //try {
             ViewBag.role = new SelectList(Roles.GetAllRoles(), "Role");
             return View();
-            //}
-            //catch (Exception er) {
-                //ViewBag.timeError = "Tiempo de Respuesta caduco..!";
-            //}  
         }
 
         //

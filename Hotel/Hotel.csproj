@@ -34,10 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Devart.Data.MySql.Web, Version=7.4.164.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.2.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=6.2.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="PdfReportGenerator">
       <HintPath>LIB\PdfReportGenerator.dll</HintPath>
     </Reference>
@@ -124,6 +129,7 @@
     <Content Include="Content\MarckUp\style.css" />
     <Content Include="Content\MarckUp\StyleTable.css" />
     <Content Include="Content\MarckUp\style_galeria.css" />
+    <Content Include="Content\myTable.css" />
     <Content Include="Content\No_existe.mp3" />
     <Content Include="Content\Styles\pq-bottom.jpg" />
     <Content Include="Content\Styles\pq-top.jpg" />

@@ -1,0 +1,68 @@
+﻿
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label
+{
+    margin: 1em 0 0 0;
+}
+
+.display-field,
+.editor-field
+{
+    margin:0.5em 0 0 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+.a-la-derecha
+{
+    /*text-align: right;*/
+    text-align: center;
+}
+
+tr.fila-alternativa
+{
+    background-color:White/* #f0f0f0*/;
+}
+
+tr.pie-grid td
+{
+    padding-top: 10px;
+    border-top: 1px solid black;
+    background-color:transparent/* #e0e0e0*/;
+    color: Blue;
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+tr.pie-grid a 
+{
+    color: #404040;
+    font-weight: normal;
+}
+
+tr.encabezado-grid th
+{
+    background-color:#9966FF;
+    color: Black;
+    font-weight: bold;
+}
+tr.encabezado-grid a,  tr.encabezado-grid td
+{
+    color:Black;
+}
+

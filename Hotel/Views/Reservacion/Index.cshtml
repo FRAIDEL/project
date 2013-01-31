@@ -1,4 +1,5 @@
-﻿<link href="@Url.Content("~/Content/MarckUp/StyleTable.css")" rel="Stylesheet" type="text/css" />
+﻿@*<link href="@Url.Content("~/Content/MarckUp/StyleTable.css")" rel="Stylesheet" type="text/css" />*@
+<link href="@Url.Content("~/Content/myTable.css")" rel="Stylesheet" type="text/css" />
 
 <div class="entry-meta" aling="center">
 <span class="author vcard">
@@ -12,51 +13,63 @@
 @ViewBag.error
 
 @*@grid.GetHtml(columns: new[]{ grid.Column("Nombres", format: f=>f.cliente.Nombres)})*@
-@grid.GetHtml(columns: new[]{ 
-    grid.Column("", 
-        header: "Num. h",
+@grid.GetHtml(
+    fillEmptyRows: true,
+    alternatingRowStyle: "fila-alternativa",
+    headerStyle: "encabezado-grid",
+    footerStyle: "pie-grid",
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
+    
+
+    columns: new[]{ 
+    grid.Column("Habitacion", 
+        header: "Habitacion",
         format: i=>i.habitacion.Num_habitacion
     ),
-    grid.Column("", 
+    grid.Column("Visitante", 
         header: "Visitante",
         format: @<a data-ajax="true" data-ajax-loading="#Uploading" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#details_cliente"   href="@Url.Action("Details", "Cliente", new { id = item.ClienteID_})">@item.cliente.Nombres</a>
     ),
-    grid.Column("", 
-        header: "fecha creacion",
+    grid.Column("Creacion", 
+        header: "Creacion",
         format: i=>i.Fecha_creacion
     ),
-    grid.Column("", 
-        header: "fecha ingreso",
+    grid.Column("Ingreso", 
+        header: "Ingreso",
         format: i=>i.Fecha_ingreso
     ),
-    grid.Column("", 
-        header: "fecha egreso",
+    grid.Column("Egreso", 
+        header: "Egreso",
         format: i=>i.Fecha_egreso
     ),
-    grid.Column("", 
-        header: "cant. dias",
+    grid.Column("Dias", 
+        header: "Dias",
         format: i=>i.Cantidad_dias
     ),
-    grid.Column("", 
-        header: "estado",
+    grid.Column("Estado", 
+        header: "Estado",
         format: i=>i.Estado
     ),
-    grid.Column("", 
-        header: "total",
+    grid.Column("Total", 
+        header: "Total",
         format: i=>i.Total
     ),
-    grid.Column("", 
-        header: "abono",
+    grid.Column("Abono", 
+        header: "Abono",
         format: i=>i.Abono
     ),
-    grid.Column("", 
-        header: "resta",
+    grid.Column("Resta", 
+        header: "Resta",
         format: i=>i.Restante
     ),
-    grid.Column("", 
-        header: "fecha devolucion",
-        format: i=>i.Fecha_devolucion
-    ),
+    //grid.Column("", 
+    //    header: "fecha devolucion",
+    //    format: i=>i.Fecha_devolucion
+    //),
     grid.Column("", 
         header: "",
         format: @<a data-ajax="true" data-ajax-loading="#Uploading" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#load_Edit" href="@Url.Action("Edit", "Reservacion", new { id = item.ReservacionID })" >editar</a>
@@ -74,172 +87,8 @@
     
 })
 
-
-this is my
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-<!-- <table style="height:20px;width:250px;overflow:scroll;"> -->
 <div class="content">
-<table cellspacing="0">
-<thead class="fixedHeader">
-    <tr>
-        <th>
-            Cliente
-        </th>
-        <th>
-            fecha de creacion
-        </th>
-        <th>
-            ip de creacion
-        </th>
-        <th>
-            usuario creacion
-        </th>
-        <th>
-            fecha actualizacion
-        </th>
-        <th>
-            ip actualizacion
-        </th>
-        <th>
-            usuario actualizacion
-        </th>
-        <th>
-            Fecha Ingreso
-        </th>
-        <th>
-            Fecha Salida
-        </th>
-        <th>
-            Numero de Dias
-        </th>
-        <th>
-            Estado
-        </th>
-        <th>
-            Total a Pagar
-        </th>
-        <th>
-            Abono
-        </th>
-        <th>
-            Restante
-        </th>        
-        @*<th>
-            fecha entrega
-        </th>
-        <th>
-            hora entrega
-        </th>*@
-        <th>
-            fecha devolucion
-        </th>
-        <th>
-            hora devolucion
-        </th>
-    </tr>
-</thead>
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-        @Ajax.ActionLink(item.cliente.Nombres, "Details", "Cliente", new { id = item.ClienteID_ },
-            new AjaxOptions
-            {
-                LoadingElementId = "Uploading",
-                UpdateTargetId = "details_cliente",
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-            }
-         )
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IP_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_ultima_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IP_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User_modificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_ingreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_egreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad_dias)
-        </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restante)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Fecha_entrega)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Hora_entrega)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_devolucion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora_devolucion)
-        </td>
-        <td>
-            @Ajax.ActionLink("Editar", "Edit", "Reservacion", new { id = item.ReservacionID },
-            new AjaxOptions
-            {
-                LoadingElementId = "Uploading",
-                UpdateTargetId = "load_Edit",
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-                //Url = Url.Action("Edit", "Reservacion", new { id = item.ReservaID }),
-            }
-         ) |
-            @Ajax.ActionLink("Cancelar Reserva", "Delete", "Reservacion", new { id = item.ReservacionID },
-            new AjaxOptions
-            {
-                HttpMethod = "post",
-                Confirm = "Esta seguro(a) que desea ELIMINAR ESTA RESERVACION DE LA BASE DE DATOS..?",
-            })
-        </td>
-        <td>
-           @* @Ajax.ActionLink("Doc. Regiatro", "RegistroHuesped_PDF", "Create_PDF",
-                new AjaxOptions { 
-                    LoadingElementId = "Uploading", 
-                    UpdateTargetId = "",
-                }
-            )*@
-        </td>
-        <td>
-            @Html.ActionLink("Registro Obligatorio De Visitantes", "RegistroHuesped_PDF", new { id = item.ReservacionID }, new { target = "_blank" })
-        </td>
-    </tr>
-}
 
-</table>
-    </a>
-</span>
 </div>
 <div id="load_Edit">
     <!-- here load edit -->
