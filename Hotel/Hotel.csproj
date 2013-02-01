@@ -113,6 +113,7 @@
     <Content Include="Content\datePicker\jquery.ui.theme.css" />
     <Content Include="Content\datePicker\jquery.ui.widget.js" />
     <Content Include="Content\Events\Events.js" />
+    <Content Include="Content\Events\jquery.facebookfeed.js" />
     <Content Include="Content\Events\jquery.form.js" />
     <Content Include="Content\Events\jquery.numeric.js" />
     <Content Include="Content\images\calendar.png" />

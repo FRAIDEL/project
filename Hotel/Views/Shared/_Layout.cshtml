@@ -7,15 +7,25 @@
 <link href="@Url.Content("~/Content/Styles/style.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/MarckUp/style_galeria.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Content/Events/jquery.facebookfeed.js")" type="text/javascript"></script>
+
 <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Content/Events/jquery.numeric.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Content/Events/Events.js")" type="text/javascript"></script>
-    
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
+<!-- facebook -->
+<meta property="og:title" content="Fans" />
+<meta property="og:type" content="hotel" />
+<meta property="og:url" content="" />
+<meta property="og:site_name" content="Hotel Estela del Mar" />
+<meta property="fb:app_id" content="433376030065057" />
+<!-- facebook -->
 <title>Hotel STELA DEL MAR </title>
 <link rel="stylesheet" type="text/css" media="all" href="@Url.Content("~/Content/MarckUp/style.css")">
 <meta name="generator" content="WordPress 3.4.1" />
@@ -23,14 +33,23 @@
 </head>
 
 <body id="1724_06292008" class="home blog single-author two-column right-sidebar">
-<!-- -->
 <div id="fb-root"></div>
-<script>
+<script>    
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
+</script>
+<!-- -->
+@*<script>
     window.fbAsyncInit = function () {
         // init the FB JS SDK
         FB.init({
-            appId: '401762606522002', // App ID from the App Dashboard
-            channelUrl: 'http://www.facebook.com/groups/401762606522002/', // Channel File for x-domain communication
+            appId: '406363516116195', // App ID from the App Dashboard
+            channelUrl: 'http://www.facebook.com/groups/406363516116195/', // Channel File for x-domain communication
             status: true, // check the login status upon init?
             cookie: true, // set sessions cookies to allow your server to access the session?
             xfbml: true  // parse XFBML tags on this page?
@@ -51,22 +70,20 @@
         js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
         ref.parentNode.insertBefore(js, ref);
     } (document, /*debug*/false));
-</script>
+</script>*@
+
+
+
 <!-- -->
-<!-- -->
-<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fgroups%2F401762606522002%2F&amp;width=292&amp;height=590&amp;show_faces=true&amp;colorscheme=light&amp;stream=true&amp;border_color=black&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:590px;" allowTransparency="true"></iframe>
-<!-- -->
-<!-- -->
-@*<div id="fb-root"></div>
+<div id="fb-root"></div>
 <script>    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
         fjs.parentNode.insertBefore(js, fjs);
-    } (document, 'script', 'facebook-jssdk'));</script>
-
-    <div class="fb-like-box" data-href="http://www.facebook.com/groups/401762606522002/" data-width="292" data-height="71" data-show-faces="true" data-stream="true" data-border-color="black" data-header="true"></div>*@
+    } (document, 'script', 'facebook-jssdk'));
+</script>
 <!-- -->
     <div style="position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; z-index: 2147483647;" id="_GPL_e6a00_parent_div">
         <object type="application/x-shockwave-flash" id="_GPL_e6a00_swf" data="#" width="1" height="1"><param name="wmode" value="transparent"><param name="allowscriptaccess" value="always"><param name="flashvars" value="logfn=_GPL.items.e6a00.log&amp;onload=_GPL.items.e6a00.onload&amp;onerror=_GPL.items.e6a00.onerror&amp;LSOName=gpl">
@@ -240,18 +257,13 @@
 			</aside>
 				<aside id="meta" class="widget">
 					<h3 class="widget-title">
-                        @Ajax.ActionLink("Admin", "LogOn", "Account",
-                            new AjaxOptions
-                            {
-                                LoadingElementId = "Uploading",
-                                UpdateTargetId = "load_loguin",
-                                InsertionMode = InsertionMode.Replace,
-                                HttpMethod = "get",
-                            }
-                        )
                         @Html.Action("LogOn", "Account")
-                        <img id="Uploading" src="@Url.Content("~/Content/images/image_alternativa.GIF")" style="display:none" />
+                        <div id="facebook-feed-container">here</div>
                     </h3>
+                    
+                    <!-- -->
+                    <div class="fb-like" data-href="https://www.facebook.com/HotelEstelaDelMar" data-send="false" data-width="90" data-show-faces="true" data-font="arial"></div>
+                    <!-- -->
 					<ul>
 						<!--<li>
                              <a href="#">
@@ -272,6 +284,9 @@
 				</aside>
 </div>
 </div><!-- #main -->
+
+<div class="fb-comments" data-href="http://www.facebook.com/HotelEstelaDelMar" data-width="470" data-num-posts="17"></div>
+
 <footer id="colophon" role="contentinfo">
 	<div id="site-generator">
 	    <a href="#" title="" rel="generator">
@@ -300,8 +315,5 @@
 		    <a href="#" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
 		</div>
     </div>*@
-    
-
-
 </body>
 </html>

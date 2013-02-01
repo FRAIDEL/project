@@ -204,20 +204,9 @@ $(document).ready(function(){
     });    
 });
 
-
-//$(function(){
-//$('#campo').keypress(function(e){
-//        var code= (e.keyCode ? e.keyCode : e.which);
-//        if (code == 13) alert('Enter key was pressed.');
-//        
-//    };
-//    var option = {
-//        target: "#load_details_cliente",
-//        url: "/Cliente/getDataCliente",
-//        type: "get",
-//        $('.query_cliente').ajaxForm(option);
-//    });
-//});
-
+$(document).ready(function() { // o la forma abreviada de este...
+  idPaginaDeFacebook = 433376030065057;
+  $('#facebook-feed-container').facebookOwnFeed(idPaginaDeFacebook); 
+});
 
 
